@@ -38,24 +38,32 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TasklistResponse implements Serializable {
     private String id;
-    List<TasklistResponse> responses;
+    private String title;
+    private String description;
+    private String status;
+
+    public static TasklistResponse of(TasklistEntity entity) {
+        return TasklistResponse.builder()
+                .id(entity.getId() != null ? entity.getId().toString() : null)
+                .title(entity.getTitle())
+                .description(entity.getDescription())
+                .status(entity.getStatus() != null ? entity.getStatus().getDescription() : null)
+                .build();
+    }
+
+    public static List<TasklistResponse> of(List<TasklistEntity> entities) {
+        return entities.stream()
+                .map(TasklistResponse::of) // agora compila, porque existe of(TasklistEntity)
+                .toList();
+    }
+
 
     public static TasklistResponse of(Tasklist tasklist) {
         return TasklistResponse.builder()
                 .id(tasklist.getId())
+                .title(tasklist.getTitle())
+                .description(tasklist.getDescription())
+                .status(tasklist.getStatus() != null ? tasklist.getStatus().getDescription() : null)
                 .build();
-    }
-
-    public static TasklistResponse of(List<TasklistEntity> entities) {
-        var list = entities.stream().map(TasklistResponse::of).toList();
-        return TasklistResponse.builder()
-                .responses(list)
-                .build();
-    }
-
-    public static TasklistResponse of(TasklistEntity entity) {
-        var response = new TasklistResponse();
-        BeanUtils.copyProperties(entity, response);
-        return response;
     }
 }

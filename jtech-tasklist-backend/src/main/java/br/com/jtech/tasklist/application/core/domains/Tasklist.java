@@ -14,6 +14,7 @@ package br.com.jtech.tasklist.application.core.domains;
 
 import br.com.jtech.tasklist.adapters.input.protocols.TasklistRequest;
 import br.com.jtech.tasklist.adapters.output.repositories.entities.TasklistEntity;
+import br.com.jtech.tasklist.adapters.output.repositories.enums.StatusEnum;
 import lombok.*;
 
 import java.util.UUID;
@@ -34,26 +35,41 @@ import java.util.List;
 public class Tasklist {
 
     private String id;
+    private String title;
+    private String description;
+    private StatusEnum status;
 
+    // Converte lista de entidades em lista de domínio
     public static List<Tasklist> of(List<TasklistEntity> entities) {
         return entities.stream().map(Tasklist::of).toList();
-     }
+    }
 
+    // Converte domínio -> entidade
     public TasklistEntity toEntity() {
         return TasklistEntity.builder()
-            .id(UUID.fromString(getId()))
-            .build();
-     }
+                .id(id != null ? UUID.fromString(id) : null)
+                .title(title)
+                .description(description)
+                .status(status)
+                .build();
+    }
 
+    // Converte entidade -> domínio
     public static Tasklist of(TasklistEntity entity) {
         return Tasklist.builder()
-            .id(entity.getId().toString())
-            .build();
-     }
+                .id(entity.getId().toString())
+                .title(entity.getTitle())
+                .description(entity.getDescription())
+                .status(entity.getStatus())
+                .build();
+    }
 
+    // Converte request -> domínio
     public static Tasklist of(TasklistRequest request) {
         return Tasklist.builder()
-            .id(request.getId())
-            .build();
-     }
- }
+                .title(request.getTitle())
+                .description(request.getDescription())
+                .status(StatusEnum.fromDescription(request.getStatus()))
+                .build();
+    }
+}

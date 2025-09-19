@@ -12,11 +12,14 @@
  */
 package br.com.jtech.tasklist.adapters.input.protocols;
 
+import br.com.jtech.tasklist.adapters.output.repositories.enums.StatusEnum;
+import br.com.jtech.tasklist.application.core.domains.Tasklist;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 import java.io.Serializable;
 import java.util.List;
@@ -32,7 +35,15 @@ import java.util.List;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class TasklistRequest implements Serializable {
-    private String id;
+    private String title;
+    private String description;
+    private String status;
 
-    private List<TasklistRequest> requests;
+    public Tasklist toDomain() {
+        return Tasklist.builder()
+                .title(title)
+                .description(description)
+                .status(StatusEnum.valueOf(status))
+                .build();
+    }
 }

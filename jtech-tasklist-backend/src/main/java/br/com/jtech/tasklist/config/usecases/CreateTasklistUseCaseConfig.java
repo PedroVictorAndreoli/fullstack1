@@ -25,7 +25,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CreateTasklistUseCaseConfig {
 
-    @Bean
+    @Bean("createTasklistUseCase")
     public CreateTasklistUseCase useCase(CreateTasklistAdapter createTasklistAdapter) {
         return new CreateTasklistUseCase(createTasklistAdapter);
      }
