@@ -40,8 +40,8 @@ A API é consumida via endpoints REST:
 
 | Método | Endpoint         | Descrição                              |
 |--------|-----------------|----------------------------------------|
-| POST   | /tasks/           | Criar uma nova tarefa                   |
-| GET    | /tasks/           | Listar todas as tarefas                 |
+| POST   | /tasks           | Criar uma nova tarefa                   |
+| GET    | /tasks           | Listar todas as tarefas                 |
 | GET    | /tasks/{id}      | Obter detalhes de uma tarefa específica|
 | PUT    | /tasks/{id}      | Atualizar uma tarefa                    |
 | DELETE | /tasks/{id}      | Deletar uma tarefa                      |
@@ -97,7 +97,7 @@ Para rodar o projeto localmente, siga os passos:
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/jtech-tasklist.git
+git clone https://github.com/PedroVictorAndreoli/fullstack1.git
 cd jtech-tasklist
 ```
 
