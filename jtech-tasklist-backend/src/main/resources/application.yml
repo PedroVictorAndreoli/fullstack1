@@ -2,8 +2,6 @@ spring:
   application:
     name: tasklist
     version: 1.0.0-SNAPSHOT
-  profiles:
-    active: ${PROFILE:dev}
   datasource:
     driverClassName: org.postgresql.Driver
     url: 
