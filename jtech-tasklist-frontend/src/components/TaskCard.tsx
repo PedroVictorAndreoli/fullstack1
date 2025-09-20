@@ -26,7 +26,7 @@ export function TaskCard({ task, onConclude, onEdit, onDelete }: TaskCardProps) 
         </Typography>
       </CardContent>
       <CardActions>
-        {task.status !== "CONCLUÍDA" && (
+        {task.status !== "concluída" && (
           <Button
             size="small"
             color="success"
