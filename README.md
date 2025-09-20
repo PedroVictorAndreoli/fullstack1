@@ -1,3 +1,8 @@
+
+**Observação:** As instruções detalhadas para executar a aplicação e rodar os testes estão disponíveis nos README.md de cada pasta do projeto.
+
+
+
 # Desafio Técnico Fullstack 1 - JTech
 
 ## API RESTful para Gerenciamento de Tarefas
