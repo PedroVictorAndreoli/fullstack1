@@ -1,0 +1,70 @@
+:root {
+  --primary-color: #1976d2; /* Azul Material */
+  --primary-hover: #1565c0;
+  --secondary-color: #9c27b0; /* Roxo Material */
+  --background: #ffffff;
+  --text-color: #212121;
+
+  font-family: 'Roboto', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--background);
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  margin: 0.5em 0;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+a {
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: var(--primary-hover);
+}
+
+button {
+  border-radius: 8px;
+  border: none;
+  padding: 0.6em 1.2em;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--primary-color);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.25s, transform 0.15s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
+}
+button:active {
+  transform: translateY(0);
+}
