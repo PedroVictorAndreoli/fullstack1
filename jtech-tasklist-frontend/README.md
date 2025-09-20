@@ -37,8 +37,6 @@ cd fullstack1/jtech-tasklist-frontend;
 ### 3. Instale as dependências
 ```bash
 npm install
-# ou
-yarn install
 ```
 
 ---
@@ -48,8 +46,6 @@ yarn install
 ### Modo de Desenvolvimento
 ```bash
 npm run dev
-# ou
-yarn dev
 ```
 
 A aplicação estará disponível em: `http://localhost:5173` (ou outra porta, dependendo da configuração)
@@ -57,6 +53,4 @@ A aplicação estará disponível em: `http://localhost:5173` (ou outra porta, d
 ### Build para Produção
 ```bash
 npm run build
-# ou
-yarn build
 ```
