@@ -90,7 +90,7 @@ Para rodar o projeto localmente, siga os passos:
 
 * Java 17 ou superior
 * Maven ou Gradle
-* Banco H2 (em memória) ou PostgreSQL configurado
+* PostgreSQL configurado (criar um database com o nome "sansys_database")
 
 ### Rodando
 
