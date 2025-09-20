@@ -2,6 +2,7 @@ package br.com.jtech.tasklist.adapters.input.controllers;
 
 import br.com.jtech.tasklist.application.ports.input.DeleteTasklistInputGateway;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,7 +25,7 @@ class DeleteTasklistControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @MockitoBean
+    @Mock
     private DeleteTasklistInputGateway deleteTasklistInputGateway;
 
     @Test

@@ -4,15 +4,13 @@ import br.com.jtech.tasklist.application.core.domains.Tasklist;
 import br.com.jtech.tasklist.application.ports.input.GetTasklistInputGateway;
 import br.com.jtech.tasklist.application.ports.output.GetTasklistOutputGateway;
 import br.com.jtech.tasklist.application.ports.output.UpdateTasklistOutputGateway;
+import lombok.AllArgsConstructor;
 
 import java.util.List;
-
+@AllArgsConstructor
 public class GetTasklistUseCase implements GetTasklistInputGateway {
     private final GetTasklistOutputGateway getTasklistOutputGateway;
 
-    public GetTasklistUseCase(GetTasklistOutputGateway getTasklistOutputGateway) {
-        this.getTasklistOutputGateway = getTasklistOutputGateway;
-    }
 
     @Override
     public List<Tasklist> findAll() {

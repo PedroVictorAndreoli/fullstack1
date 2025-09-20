@@ -37,7 +37,7 @@ import static br.com.jtech.tasklist.application.core.domains.Tasklist.of;
 * user angelo.vicente
 */
 @RestController
-@RequestMapping("/api/v1/tasklists")
+@RequestMapping("/api/v1/tasklists/")
 @RequiredArgsConstructor
 public class CreateTasklistController {
     @Qualifier("createTasklistUseCase")

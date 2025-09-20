@@ -6,6 +6,7 @@ import br.com.jtech.tasklist.application.core.domains.Tasklist;
 import br.com.jtech.tasklist.application.ports.input.UpdateTasklistInputGateway;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -31,7 +32,7 @@ class UpdateTasklistControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @MockitoBean
+    @Mock
     private UpdateTasklistInputGateway updateTasklistInputGateway;
 
     @Test
@@ -41,7 +42,7 @@ class UpdateTasklistControllerTest {
         TasklistRequest request = new TasklistRequest();
         request.setTitle("Updated Task");
         request.setDescription("Updated Description");
-        request.setStatus("PENDENTE"); 
+        request.setStatus("PENDENTE");
 
 
         Tasklist tasklistToReturn = Tasklist.of(request);

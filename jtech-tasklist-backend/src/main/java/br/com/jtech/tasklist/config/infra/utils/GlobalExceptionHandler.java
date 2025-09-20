@@ -1,17 +1,4 @@
-/*
- * @(#)GlobalExceptionHandler.java
- *
- * Copyright (c) J-Tech Solucoes em Informatica.
- * All Rights Reserved.
- *
- * This software is the confidential and proprietary information of J-Tech.
- * ("Confidential Information"). You shall not disclose such Confidential
- * Information and shall use it only in accordance with the terms of the
- * license agreement you entered into with J-Tech.
- */
 package br.com.jtech.tasklist.config.infra.handlers;
-
-
 
 import br.com.jtech.tasklist.config.infra.exceptions.*;
 import org.springframework.http.HttpStatus;
@@ -26,43 +13,64 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Create a global exception handler for intercepting all exceptions in the api.
+ * Gerenciador global de exceções da API.
  *
- * @author angelo.vicente
- * class GlobalExceptionHandler
- **/
+ * Fornece respostas consistentes de erros em português.
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    /**
-     * This method handles spring validations.
-     *
-     * @param ex Exception thrown.
-     * @return Return a {@link ApiError} with an array of errors.
-     */
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiError> handleValidationErrors(MethodArgumentNotValidException ex) {
         ApiError error = new ApiError(HttpStatus.BAD_REQUEST);
-        error.setMessage("Error on request");
+        error.setMessage("Erro de validação");
         error.setTimestamp(LocalDateTime.now());
-        error.setSubErrors(subErrors(ex));
         error.setDebugMessage(ex.getLocalizedMessage());
+        error.setSubErrors(buildSubErrors(ex));
+
         return buildResponseEntity(error);
     }
+
+
+    private List<ApiSubError> buildSubErrors(MethodArgumentNotValidException ex) {
+        List<ApiSubError> errors = new ArrayList<>();
+        for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
+            errors.add(new ApiValidationError(
+                    fieldError.getObjectName(),
+                    fieldError.getField(),
+                    fieldError.getRejectedValue(),
+                    "Campo inválido: " + fieldError.getDefaultMessage()
+            ));
+        }
+        return errors;
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ApiError> handleRuntimeException(RuntimeException ex) {
+        ApiError error = new ApiError(HttpStatus.BAD_REQUEST, "Erro de execução: " + ex.getMessage(), ex);
+        error.setTimestamp(LocalDateTime.now());
+        return buildResponseEntity(error);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ApiError> handleIllegalArgumentException(IllegalArgumentException ex) {
+        ApiError error = new ApiError(HttpStatus.BAD_REQUEST, "Argumento inválido: " + ex.getMessage(), ex);
+        error.setTimestamp(LocalDateTime.now());
+        return buildResponseEntity(error);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiError> handleAllExceptions(Exception ex) {
+        ApiError error = new ApiError(HttpStatus.INTERNAL_SERVER_ERROR, "Erro inesperado", ex);
+        error.setTimestamp(LocalDateTime.now());
+        return buildResponseEntity(error);
+    }
+
+
 
     private ResponseEntity<ApiError> buildResponseEntity(ApiError apiError) {
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }
 
-
-    private List<ApiSubError> subErrors(MethodArgumentNotValidException ex) {
-        List<ApiSubError> errors = new ArrayList<>();
-        for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
-            ApiValidationError api = new ApiValidationError(ex.getObjectName(), fieldError.getField(), fieldError.getRejectedValue(), fieldError.getDefaultMessage());
-            errors.add(api);
-
-        }
-        return errors;
-    }
 
 }

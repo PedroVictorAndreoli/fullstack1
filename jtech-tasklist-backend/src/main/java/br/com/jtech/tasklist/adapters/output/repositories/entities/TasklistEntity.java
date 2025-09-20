@@ -14,6 +14,7 @@ package br.com.jtech.tasklist.adapters.output.repositories.entities;
 
 import br.com.jtech.tasklist.adapters.output.repositories.enums.StatusEnum;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -36,12 +37,13 @@ public class TasklistEntity {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     private UUID id;
-
+    @NotNull
     private String title;
-
+    @NotNull
     private String description;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private StatusEnum status;
 
 }
