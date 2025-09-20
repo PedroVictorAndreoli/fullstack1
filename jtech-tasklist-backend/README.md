@@ -40,8 +40,8 @@ A API é consumida via endpoints REST:
 
 | Método | Endpoint         | Descrição                              |
 |--------|-----------------|----------------------------------------|
-| POST   | /tasks           | Criar uma nova tarefa                   |
-| GET    | /tasks           | Listar todas as tarefas                 |
+| POST   | /tasks/           | Criar uma nova tarefa                   |
+| GET    | /tasks/           | Listar todas as tarefas                 |
 | GET    | /tasks/{id}      | Obter detalhes de uma tarefa específica|
 | PUT    | /tasks/{id}      | Atualizar uma tarefa                    |
 | DELETE | /tasks/{id}      | Deletar uma tarefa                      |
@@ -55,7 +55,7 @@ Exemplo de requisição usando `curl`:
 **Criar tarefa:**
 
 ```bash
-curl -X POST http://localhost:8080/tasks \
+curl -X POST http://localhost:8080/tasks/ \
 -H "Content-Type: application/json" \
 -d '{"title": "Finalizar documentação", "description": "Concluir relatório", "status": "PENDENTE"}'
 ```
@@ -63,7 +63,7 @@ curl -X POST http://localhost:8080/tasks \
 **Listar tarefas:**
 
 ```bash
-curl -X GET http://localhost:8080/tasks
+curl -X GET http://localhost:8080/tasks/
 ```
 
 **Atualizar tarefa:**
