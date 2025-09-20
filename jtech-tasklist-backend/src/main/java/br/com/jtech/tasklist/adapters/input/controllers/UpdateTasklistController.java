@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/v1/tasklists")
 @RequiredArgsConstructor
@@ -19,7 +21,7 @@ public class UpdateTasklistController {
 
     @PutMapping("/{id}")
     public ResponseEntity<TasklistResponse> update(
-            @PathVariable String id,
+            @PathVariable UUID id,
             @RequestBody TasklistRequest request) {
 
         // Converte request para domain e seta o ID do path

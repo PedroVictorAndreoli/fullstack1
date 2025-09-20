@@ -24,6 +24,7 @@ import org.springframework.beans.BeanUtils;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 /**
 * class TasklistResponse 
@@ -37,14 +38,14 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TasklistResponse implements Serializable {
-    private String id;
+    private UUID id;
     private String title;
     private String description;
     private String status;
 
     public static TasklistResponse of(TasklistEntity entity) {
         return TasklistResponse.builder()
-                .id(entity.getId() != null ? entity.getId().toString() : null)
+                .id(entity.getId() != null ? entity.getId() : null)
                 .title(entity.getTitle())
                 .description(entity.getDescription())
                 .status(entity.getStatus() != null ? entity.getStatus().getDescription() : null)

@@ -16,7 +16,7 @@ public class UpdateTasklistAdapter implements UpdateTasklistOutputGateway {
     @Override
     public Tasklist update(Tasklist tasklist) {
         // Verifica se a tarefa existe
-        var entityOptional = repository.findById(UUID.fromString(tasklist.getId()));
+        var entityOptional = repository.findById(tasklist.getId());
         if (entityOptional.isEmpty()) {
             throw new RuntimeException("Tarefa não encontrada com ID: " + tasklist.getId());
         }

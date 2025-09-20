@@ -34,7 +34,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Tasklist {
 
-    private String id;
+    private UUID id;
     private String title;
     private String description;
     private StatusEnum status;
@@ -47,7 +47,7 @@ public class Tasklist {
     // Converte domínio -> entidade
     public TasklistEntity toEntity() {
         return TasklistEntity.builder()
-                .id(id != null ? UUID.fromString(id) : null)
+                .id(id != null ? id : null)
                 .title(title)
                 .description(description)
                 .status(status)
@@ -57,7 +57,7 @@ public class Tasklist {
     // Converte entidade -> domínio
     public static Tasklist of(TasklistEntity entity) {
         return Tasklist.builder()
-                .id(entity.getId().toString())
+                .id(entity.getId())
                 .title(entity.getTitle())
                 .description(entity.getDescription())
                 .status(entity.getStatus())
