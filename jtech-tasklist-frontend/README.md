@@ -26,12 +26,12 @@ yarn -v
 
 ### 1. Clone o repositório
 ```bash
-git clone https://github.com/seu-usuario/nome-do-repositorio.git
+git clone https://github.com/PedroVictorAndreoli/fullstack1.git
 ```
 
 ### 2. Entre na pasta do projeto
 ```bash
-cd nome-do-repositorio
+cd fullstack1/jtech-tasklist-frontend;
 ```
 
 ### 3. Instale as dependências
