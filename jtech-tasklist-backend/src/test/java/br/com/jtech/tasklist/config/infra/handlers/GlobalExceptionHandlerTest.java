@@ -26,7 +26,7 @@ class GlobalExceptionHandlerTest {
 
     @Test
     void handleValidationErrors_ShouldReturnBadRequestWithSubErrors() {
-        
+
         FieldError fieldError = new FieldError("task", "title", "Título é obrigatório");
         BindingResult bindingResult = mock(BindingResult.class);
         when(bindingResult.getFieldErrors()).thenReturn(List.of(fieldError));

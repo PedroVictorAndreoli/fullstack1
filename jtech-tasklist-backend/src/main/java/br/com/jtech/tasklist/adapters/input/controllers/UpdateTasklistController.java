@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/tasklists/")
+@RequestMapping("/api/v1/tasklists")
 @RequiredArgsConstructor
 public class UpdateTasklistController {
 
