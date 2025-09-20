@@ -16,8 +16,6 @@ Antes de iniciar, certifique-se de ter instalado em sua máquina:
 ```bash
 node -v
 npm -v
-# ou
-yarn -v
 ```
 
 ---
